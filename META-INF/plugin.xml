@@ -1,0 +1,71 @@
+<!--
+  Copyright 2014 Hippo B.V. (http://www.onehippo.com)
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+
+<idea-plugin version="2">
+  <id>org.onehippo.groovy.editor.id</id>
+  <name>Hippo repository groovy editor</name>
+  <version>1.0</version>
+  <vendor email="m.milicevic@onehippo.com" url="http://www.onehippo.com">Hippo</vendor>
+
+  <description><![CDATA[
+      Edit groovy templates and save those to Hippo repository  (register as module)
+    ]]></description>
+
+  <change-notes><![CDATA[
+     First release
+    ]]>
+  </change-notes>
+
+
+  <!--<depends>org.intellij.groovy</depends>-->
+  <idea-version since-build="131"/>
+
+
+
+  <extensions defaultExtensionNs="com.intellij">
+  </extensions>
+
+  <project-components>
+    <component>
+      <implementation-class>org.onehippo.intellij.groovy.config.ProjectComponent</implementation-class>
+    </component>
+    <component>
+      <implementation-class>org.onehippo.intellij.groovy.config.metadata.GroovySessionComponent</implementation-class>
+    </component>
+  </project-components>
+
+  <project-components>
+    <!-- Add your project components here -->
+  </project-components>
+
+  <actions>
+    <!-- Add your actions here -->
+    <action icon="/icons/load.png" id="org.onehippo.intellij.groovy.LoadFiles" class="org.onehippo.intellij.groovy.LoadFiles" text="Load groovy scripts from repository" description="Load groovy scripts from Hippo Repository">
+      <add-to-group group-id="FileMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt O"/>
+    </action>
+    <action icon="/icons/save.png" id="groovy.schedule.file" class="org.onehippo.intellij.groovy.actions.ScheduleFileAction" text="Save groovy script to repository" description="Schedule groovy script ">
+      <add-to-group group-id="FileMenu" anchor="first"/>
+      <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt G"/>
+    </action>
+  </actions>
+
+  <application-components>
+    <component>
+      <implementation-class>org.onehippo.intellij.groovy.config.ApplicationComponent</implementation-class>
+    </component>
+  </application-components>
+</idea-plugin>
