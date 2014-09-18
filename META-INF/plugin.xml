@@ -17,7 +17,7 @@
 <idea-plugin version="2">
   <id>org.onehippo.groovy.editor.id</id>
   <name>Hippo repository groovy editor</name>
-  <version>1.0</version>
+  <version>1.1</version>
   <vendor email="m.milicevic@onehippo.com" url="http://www.onehippo.com">Hippo</vendor>
 
   <description><![CDATA[
@@ -25,7 +25,8 @@
     ]]></description>
 
   <change-notes><![CDATA[
-     First release
+     1.1 Use lowercase package names (registry/history/queue), add warning if directory does not exists.
+     1.0 First release.
     ]]>
   </change-notes>
 

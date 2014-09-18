@@ -1,4 +1,8 @@
-
+ ### RELEASE NOTES
+```
+1.1 Use lowercase package names (registry/history/queue), add warning if directory does not exists.
+1.0 First release.
+```
 
 ## INSTALLATION INSTRUCTIONS
 
