@@ -75,6 +75,10 @@ public class LoadFiles extends AnAction {
                 }
 
             }
+            if (!new File(groovyFolder).exists()) {
+                Util.showError(project, "Root folder doesn't exist:" + groovyFolder +". Change it in Settings > Hippo Groovy editor");
+                return;
+            }
             saveTemplates(connector, project, templates, groovyFolder);
         }
 
