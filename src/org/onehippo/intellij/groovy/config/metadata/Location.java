@@ -19,16 +19,14 @@ package org.onehippo.intellij.groovy.config.metadata;
 import com.google.common.base.Strings;
 
 /**
- * public static final String LOCATION_REGISTRY = "Registry";
- * public static final String LOCATION_QUEUE = "Queue";
- * public static final String LOCATION_HISTORY = "History";
  *
  * @version "$Id$"
  */
 public enum Location {
-    REGISTRY("Registry", "/hippo:configuration/hippo:update/hippo:registry"),
-    HISTORY("History", "/hippo:configuration/hippo:update/hippo:history"),
-    QUEUE("Queue", "/hippo:configuration/hippo:update/hippo:queue");
+
+    REGISTRY("registry", "/hippo:configuration/hippo:update/hippo:registry"),
+    HISTORY("history", "/hippo:configuration/hippo:update/hippo:history"),
+    QUEUE("queue", "/hippo:configuration/hippo:update/hippo:queue");
 
     private final String name;
     private final String path;
