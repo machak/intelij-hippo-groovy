@@ -65,8 +65,8 @@ public class FileDialog extends JComponent {
         //############################################
         // SPINNER LIMIT
         //############################################
-        this.existingData =  existingData;
-        batchSize.setModel(new SpinnerNumberModel(10, 1, Integer.MAX_VALUE, 10));
+        this.existingData = existingData;
+        batchSize.setModel(new SpinnerNumberModel(10, 1, Integer.MAX_VALUE, 1));
         throttle.setModel(new SpinnerNumberModel(100, 0, Integer.MAX_VALUE, 10));
         queryOrPath.setModel(queryOrPathModel);
         queryOrPath.addActionListener(new ActionListener() {
@@ -100,10 +100,10 @@ public class FileDialog extends JComponent {
     }
 
     public boolean valid() {
-        if(Strings.isNullOrEmpty(scriptName.getText())){
+        if (Strings.isNullOrEmpty(scriptName.getText())) {
             return false;
         }
-        if(getDropdownValue().equals(ExecuteType.PATH.getType())) {
+        if (getDropdownValue().equals(ExecuteType.PATH.getType())) {
             return !Strings.isNullOrEmpty(path.getText());
         }
         return !Strings.isNullOrEmpty(queryString.getText());
@@ -116,7 +116,11 @@ public class FileDialog extends JComponent {
         scriptName.setText(data.getScriptName());
         queryString.setText(data.getQueryScript());
         throttle.setValue(data.getThrottle());
-        batchSize.setValue(data.getBatchSize());
+        int myBatchSize = data.getBatchSize();
+        if (myBatchSize == 0) {
+            myBatchSize = 10;
+        }
+        batchSize.setValue(myBatchSize);
         queryOrPath.setModel(queryOrPathModel);
         queryOrPathModel.setSelectedItem(data.getQueryOrPath());
         locationModel.setSelectedItem(data.getLocation());

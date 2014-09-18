@@ -64,6 +64,10 @@ public class LoadFiles extends AnAction {
         if (project != null) {
             RepositoryConnector connector = new RepositoryConnector(project);
             final Set<FileDialogData> templates = fetchTemplates(project, connector);
+            if (templates.size() == 0) {
+                Util.showMessage(project, "No existing groovy scripts found");
+                return;
+            }
             final VirtualFile baseDir = project.getBaseDir();
             final String projectPath = baseDir.getPath();
             String groovyFolder = projectPath + File.separator + RepositoryConnector.GROOVY_FOLDER;
@@ -76,16 +80,19 @@ public class LoadFiles extends AnAction {
 
             }
             if (!new File(groovyFolder).exists()) {
-                Util.showError(project, "Root folder doesn't exist:" + groovyFolder +". Change it in Settings > Hippo Groovy editor");
+                Util.showError(project, "Root folder doesn't exist:" + groovyFolder + ". Change it in Settings > Hippo Groovy editor");
                 return;
             }
-            saveTemplates(connector, project, templates, groovyFolder);
+            final boolean done = saveTemplates(connector, project, templates, groovyFolder);
+            if (done) {
+                Util.showMessage(project, "Successfully loaded " + templates.size() + " groovy scripts");
+            }
         }
 
 
     }
 
-    public void saveTemplates(final RepositoryConnector connector, final Project project, final Set<FileDialogData> templates, final String groovyFolder) {
+    public boolean saveTemplates(final RepositoryConnector connector, final Project project, final Set<FileDialogData> templates, final String groovyFolder) {
         final GroovySessionComponent sessionComponent = project.getComponent(GroovySessionComponent.class);
         try {
 
@@ -123,10 +130,12 @@ public class LoadFiles extends AnAction {
                 }
 
             }
+            return true;
         } catch (IOException e) {
             GroovyEditor.error(e.getMessage(), project);
         }
 
+        return false;
 
     }
 
