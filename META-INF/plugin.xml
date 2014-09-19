@@ -17,7 +17,7 @@
 <idea-plugin version="2">
   <id>org.onehippo.groovy.editor.id</id>
   <name>Hippo repository groovy editor</name>
-  <version>1.2</version>
+  <version>1.3</version>
   <vendor email="m.milicevic@onehippo.com" url="http://www.onehippo.com">Hippo</vendor>
 
   <description><![CDATA[
@@ -25,9 +25,12 @@
     ]]></description>
 
   <change-notes><![CDATA[
-     1.2 Change spinner settings, add more info messages
-     1.1 Use lowercase package names (registry/history/queue), add warning if directory does not exists.
-     1.0 First release.
+     <p>1.3 Add file check and warn if file is not a groovy file. <strong>NOTE:</strong>
+      Depends on groovy plugin</p>
+     <p>1.2 Change spinner settings, add more info messages</p>
+     <p>1.1 Use lowercase package names (registry/history/queue), add warning if directory does not exists.</p>
+     <p>1.0 First release.</p>
+
     ]]>
   </change-notes>
 

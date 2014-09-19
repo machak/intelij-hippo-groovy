@@ -96,7 +96,6 @@ public class ScheduleFileAction extends AnAction {
             final FileDialogData dialogData = items.get(currentFile.getCanonicalPath());
             if (dialogData != null) {
                 existingData = dialogData;
-
             }
         }
 
