@@ -32,7 +32,7 @@
   </change-notes>
 
 
-  <!--<depends>org.intellij.groovy</depends>-->
+  <depends>org.intellij.groovy</depends>
   <idea-version since-build="131"/>
 
 

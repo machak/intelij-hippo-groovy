@@ -100,6 +100,9 @@ public class FileDialog extends JComponent {
     }
 
     public boolean valid() {
+        if (Strings.isNullOrEmpty(String.valueOf(location.getSelectedItem()))) {
+            return false;
+        }
         if (Strings.isNullOrEmpty(scriptName.getText())) {
             return false;
         }

@@ -18,6 +18,7 @@ package org.onehippo.intellij.groovy.actions;
 
 import java.util.Map;
 
+import org.jetbrains.plugins.groovy.GroovyFileType;
 import org.onehippo.intellij.groovy.RepositoryConnector;
 import org.onehippo.intellij.groovy.config.metadata.GroovySessionComponent;
 import org.onehippo.intellij.groovy.config.metadata.Location;
@@ -26,6 +27,7 @@ import org.onehippo.intellij.groovy.config.metadata.gui.FileDialogData;
 import org.onehippo.intellij.groovy.config.metadata.gui.ScheduleDialog;
 import org.onehippo.intellij.groovy.utils.Util;
 
+import com.intellij.CommonBundle;
 import com.intellij.openapi.actionSystem.AnAction;
 import com.intellij.openapi.actionSystem.AnActionEvent;
 import com.intellij.openapi.actionSystem.CommonDataKeys;
@@ -33,8 +35,10 @@ import com.intellij.openapi.editor.Document;
 import com.intellij.openapi.editor.Editor;
 import com.intellij.openapi.fileEditor.FileDocumentManager;
 import com.intellij.openapi.fileEditor.FileEditorManager;
+import com.intellij.openapi.fileTypes.FileType;
 import com.intellij.openapi.project.Project;
 import com.intellij.openapi.ui.DialogWrapper;
+import com.intellij.openapi.ui.Messages;
 import com.intellij.openapi.vfs.VirtualFile;
 
 public class ScheduleFileAction extends AnAction {
@@ -76,6 +80,14 @@ public class ScheduleFileAction extends AnAction {
         if (currentFile == null) {
             Util.showError(project, "No document selected");
             return;
+        }
+        // check if groovy file
+        final FileType fileType = currentFile.getFileType();
+        if(fileType != GroovyFileType.GROOVY_FILE_TYPE){
+            final int result = Messages.showOkCancelDialog("File"+ currentFile.getName()+" doesn't seems to be a groovy file", CommonBundle.getWarningTitle(),Messages.getWarningIcon());
+            if (result != 0) {
+                return;
+            }
         }
         FileDialogData existingData = new FileDialogData();
         final SessionState state = sessionComponent.getState();
